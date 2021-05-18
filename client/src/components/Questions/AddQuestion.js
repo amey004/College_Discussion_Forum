@@ -1,6 +1,5 @@
-import { Input } from '@material-ui/core';
 import React,{ useEffect, useState} from 'react'
-import {Form,Button,FormGroup, Label, Col} from 'reactstrap';
+import {Form,Button,FormGroup, Label, Col,Input} from 'reactstrap';
 import axios from "axios";
 import { useHistory } from 'react-router';
 
@@ -40,18 +39,19 @@ export default function AddQuestion(props) {
             <h5>{firstName} add your question : </h5>
           </div>
           <div className="col-12 col-md-9">
-            <Form onSubmit={addquestion}>
+            <Form onSubmit={(e)=>addquestion(e)}>
               <FormGroup row>
                 <Label htmlFor="Question" md={3}>
                   Question
                 </Label>
                 <Col md={9}>
                   <Input
-                    type="text"
+                    type="textarea"
                     id="question"
                     name="question"
                     placeholder="Ask your question here"
                     autoComplete="off"
+                    className="mb-2"
                     onChange={(e) => {
                       setQuestion(e.target.value);
                     }}
@@ -66,6 +66,7 @@ export default function AddQuestion(props) {
                     <option value="campus">Campus</option>
                     <option value="campus">Academics</option>
                     <option value="placements">Placements</option>
+                    <option value="other">Other</option>
                   </select>
                 </Col>
                 <FormGroup row>

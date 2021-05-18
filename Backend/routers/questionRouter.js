@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 router.post("/",auth,async (req,res)=>{
     try {
-        const {UserName,userId, que } = req.body;
+        const {UserName,userId, que,type } = req.body;
         const newQuestion = new  Question({
             UserName,
             userId,

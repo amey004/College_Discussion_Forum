@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 import axios from"axios";
 import { Card, CardBody,Input,Button,Form } from "reactstrap";
-
+import "../../App.css"
 
 class displayQuestions extends Component{
 
@@ -16,7 +16,8 @@ class displayQuestions extends Component{
 
     }
     async getQuestions(){
-        const questionsRes = await axios.get("http://localhost:5000/addquestion");
+        const category = this.props.category;
+        const questionsRes = await axios.get("http://localhost:5000/addquestion",{category});
         this.setState({
           questions:questionsRes.data,
         })
@@ -24,7 +25,8 @@ class displayQuestions extends Component{
     componentDidMount(){
       this.getQuestions();
     }
-    rederQuestions(){
+
+  rederQuestions(){
       const questionsArr = this.state.questions;
       const ans = this.state.answer;
       const Name = this.props.name;
@@ -33,29 +35,44 @@ class displayQuestions extends Component{
       }
       return questionsArr.map((question, i) => {
           return (
-            <Card className="mt-2" key={i}>
+            <Card
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)",
+                  
+              }}
+              className="w-100 mt-2 mr-2"
+              key={i}
+            >
               <strong className="ml-2">{question.que}</strong>
               <CardBody>
-                {question.answer ? <div>Answer : {question.answer}
-                <div className="mt-2">
-                  <small>Answered by {question.ansBy}</small>
-                </div>
-                </div> :
-                <Form onSubmit={(e)=>{AddAnswer(e,{id:question._id})}}>
-                  <Input
-                    type="textarea"
-                    placeholder="Enter your answer here"
-                    onChange={(e) => {
-                      this.setState({
-                        answer: e.target.value,
-                      });
+                {question.answer ? (
+                  <div>
+                    Answer : {question.answer}
+                    <div className="mt-2">
+                      <small>Answered by {question.ansBy}</small>
+                    </div>
+                  </div>
+                ) : (
+                  <Form
+                    onSubmit={(e) => {
+                      AddAnswer(e, { id: question._id });
                     }}
-                  />
-                  <Button type="submit" className="m-2" color="primary">
-                    Add
-                  </Button>
-                </Form>
-                }
+                  >
+                    <Input
+                      type="textarea"
+                      placeholder="Enter your answer here"
+                      onChange={(e) => {
+                        this.setState({
+                          answer: e.target.value,
+                        });
+                      }}
+                    />
+                    <Button type="submit" className="m-2" color="primary">
+                      Add
+                    </Button>
+                  </Form>
+                )}
               </CardBody>
             </Card>
           );

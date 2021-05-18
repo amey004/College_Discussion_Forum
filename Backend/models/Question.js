@@ -23,7 +23,7 @@ const questionSchema = {
   },
   type:{
     type:String,
-    require:true,
+    required:true,
   }
 };
 
