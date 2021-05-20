@@ -27,7 +27,7 @@ class Header extends Component {
           <div>
             <Navbar dark expand="md">
               <div className="container">
-                <NavbarToggler onClick={this.toggleNav} />
+                <NavbarToggler className="mr-2" onClick={this.toggleNav} />
                 <NavbarBrand className="mr-auto" href="/">
                   <h4>
                     <strong>

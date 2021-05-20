@@ -35,7 +35,7 @@ export default class LoginComponent extends Component {
 
       await axios.post("http://localhost:5000/auth/login", loginData);
       await getLoggedIn();
-
+      this.props.history.push("/")
     } catch (error) {
       console.error(error);
     }

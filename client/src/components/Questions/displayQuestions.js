@@ -34,6 +34,9 @@ class displayQuestions extends Component{
         await axios.post("http://localhost:5000/addquestion/ans",{id,answer:ans,Name})
       }
       return questionsArr.map((question, i) => {
+          if(question.type !== this.props.category & this.props.category!==""){
+            return(<div key={i}></div>);
+          }else{
           return (
             <Card
               style={{
@@ -45,6 +48,7 @@ class displayQuestions extends Component{
               key={i}
             >
               <strong className="ml-2">{question.que}</strong>
+
               <CardBody>
                 {question.answer ? (
                   <div>
@@ -75,8 +79,9 @@ class displayQuestions extends Component{
                 )}
               </CardBody>
             </Card>
-          );
+          );}
         });
+      
     }
 
     render(){

@@ -30,7 +30,6 @@ router.get("/",async (req,res)=>{
         res.status(500).send(error);
     }
 })
-
 router.post("/ans",auth,async(req,res)=>{
     try {
         const question = await Question.findOne({_id:req.body.id});

@@ -8,6 +8,7 @@ export default function HomeComponent() {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [category, setcategory] = useState("");
+    const [click,setClick]=useState("");
     async function data(){
         const UserData = await axios.get("http://localhost:5000/auth/user");
         setfirstName(UserData.data.firstName);
@@ -16,10 +17,10 @@ export default function HomeComponent() {
     useEffect(()=>{
         data();
     });
-    function changeCategory(e) {
-      const category = e.target.value;
-      setcategory(category);
-    }
+    function buttonclick(e){
+      setcategory(e);
+      setClick(e);
+    };
     return (
       <div className="container">
         <Grid container spacing={2}>
@@ -29,43 +30,48 @@ export default function HomeComponent() {
               <div className="mt-3 ml-3">
                 <Button
                   value=""
-                  className="mr-2 d-md-block"
-                  onClick={changeCategory}
+                  className="ml-2 d-md-block"
+                  onClick={() => buttonclick("")}
+                  variant={click === "" ? "outlined" : {}}
                 >
                   All
                 </Button>
                 <Button
                   value="campus"
                   className="ml-2"
-                  onClick={changeCategory}
+                  onClick={() => buttonclick("campus")}
+                  variant={click === "campus" ? "outlined" : {}}
                 >
                   Campus
                 </Button>
                 <Button
                   value="academics"
                   className="ml-2"
-                  onClick={changeCategory}
+                  onClick={() => buttonclick("academics")}
+                  variant={click === "academics" ? "outlined" : {}}
                 >
                   Academics
                 </Button>
                 <Button
                   value="placemnets"
                   className="ml-2"
-                  onClick={() => setcategory("placements")}
+                  onClick={() => buttonclick("placements")}
+                  variant={click === "placements" ? "outlined" : {}}
                 >
                   Placements
                 </Button>
                 <Button
                   value="others"
                   className="ml-2"
-                  onClick={() => setcategory("others")}
+                  onClick={() => buttonclick("other")}
+                  variant={click === "other" ? "outlined" : {}}
                 >
                   Others
                 </Button>
               </div>
             </div>
           </Grid>
-          <Grid style={{maxWidth:'700px'}} xs={10}>
+          <Grid style={{ maxWidth: "700px" }} xs={10}>
             <div className="row mt-3 ml-1">
               <Container>
                 {firstName === "" ? (

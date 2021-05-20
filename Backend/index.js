@@ -21,7 +21,6 @@ app.listen(port,()=> console.log(`Server started on port: ${port}`));
 
 
 app.use("/auth",require("./routers/user"));
-app.use("/customer",require("./routers/customerRouter"));
 app.use("/addquestion",require("./routers/questionRouter"))
 
 
