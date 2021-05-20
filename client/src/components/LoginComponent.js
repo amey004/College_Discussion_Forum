@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Form,Button,FormGroup,Col,Input,Label,Breadcrumb,BreadcrumbItem,} from 'reactstrap';
+import {Form,Button,FormGroup,Col,Input,Label,Breadcrumb,BreadcrumbItem,Alert} from 'reactstrap';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AuthContext from '../context/AuthContext';
@@ -12,6 +12,7 @@ export default class LoginComponent extends Component {
     this.state = {
       email: "",
       password: "",
+      errorMessage:"",
       touched: {
         email: false,
         password: false,
@@ -37,7 +38,8 @@ export default class LoginComponent extends Component {
       await getLoggedIn();
       this.props.history.push("/")
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.errorMessage);
+      this.setState({errorMessage:error.response.data.errorMessage});
     }
   }
   render() {
@@ -87,15 +89,18 @@ export default class LoginComponent extends Component {
                   />
                 </Col>
               </FormGroup>
+              <Col md={{size:9,offset:3}}>
+              {this.state.errorMessage!=="" ? <Alert style={{height:"30px",padding:"0",paddingLeft:"20px"}} color="danger">{this.state.errorMessage}</Alert> : <div></div> }
+              </Col>
               <FormGroup row>
                 <Col className="mt-4" md={{ size: 9, offset: 3 }}>
                   <Link to="/register">New User?Create account</Link>
                 </Col>
               </FormGroup>
               <FormGroup className="mt-4" row>
-                <Col md={{ size: 9, offset: 3 }}>
+                <Col md={{ size: 9, offset: 3 }} xs={{size:8,offset:4}}>
                   <Button type="submit" color="primary">
-                    Sign Up
+                    Sign In
                   </Button>
                 </Col>
               </FormGroup>

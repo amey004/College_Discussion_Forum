@@ -58,8 +58,7 @@ router.post("/", async (req, res) => {
 
     //send the token  in HTTP-only cookie
 
-    res
-      .cookie("token", token, {
+    res.cookie("token", token, {
         httpOnly: true,
       })
       .send();

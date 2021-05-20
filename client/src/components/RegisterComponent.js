@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Form,Button,FormGroup,Col,Input,Label,Breadcrumb,BreadcrumbItem,} from 'reactstrap';
+import {Form,Button,FormGroup,Col,Input,Label,Breadcrumb,BreadcrumbItem,Alert} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
@@ -16,6 +16,7 @@ class register extends Component {
             agree:'',
             password:'',
             verifyPassword:"",
+            errorMessage:"",
             touched:{
                 firstName:false,
                 lastName:false,
@@ -43,7 +44,8 @@ class register extends Component {
         await getLoggedIn();
         this.props.history.push("/");
       } catch (error) {
-        console.error(error);
+        console.error(error.response.data.errorMessage);
+        this.setState({ errorMessage: error.response.data.errorMessage });
       }
     }
 
@@ -67,7 +69,7 @@ render(){
             <Form onSubmit={this.register}>
               <FormGroup row>
                 <Label htmlFor="firstName" md={3}>
-                  First Name
+                  First Name*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -75,14 +77,16 @@ render(){
                     id="firstName"
                     name="firstName"
                     placeholder="Enter First Name"
-                    onChange={(e)=>this.setState({firstName:e.target.value})}
+                    onChange={(e) =>
+                      this.setState({ firstName: e.target.value })
+                    }
                     value={this.state.firstName}
                   />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="lastName" md={3}>
-                  Last Name
+                  Last Name*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -90,14 +94,16 @@ render(){
                     id="lastName"
                     name="lastName"
                     placeholder="Enter Last Name"
-                    onChange={(e)=>this.setState({lastName:e.target.value})}
+                    onChange={(e) =>
+                      this.setState({ lastName: e.target.value })
+                    }
                     value={this.state.lastName}
                   />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="email" md={3}>
-                  Email
+                  Email*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -112,7 +118,7 @@ render(){
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="password" md={3}>
-                  Password
+                  Password*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -129,7 +135,7 @@ render(){
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="password" md={3}>
-                  Confirm Password
+                  Confirm Password*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -137,7 +143,9 @@ render(){
                     id="confirmpassword"
                     name="confirmpassword"
                     placeholder="Confirm Password"
-                    onChange={(e) => this.setState({ verifyPassword: e.target.value })}
+                    onChange={(e) =>
+                      this.setState({ verifyPassword: e.target.value })
+                    }
                     value={this.state.verifyPassword}
                   />
                 </Col>
@@ -145,16 +153,23 @@ render(){
               <Col className="mt-4" md={{ size: 9, offset: 3 }}>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" name="agree" />
+                    <Input type="checkbox" required="true" name="agree" />
                     <strong>Agree to terms and condtion</strong>
                   </Label>
                 </FormGroup>
               </Col>
               <Col className="mt-4" md={{ size: 9, offset: 3 }}>
+                {this.state.errorMessage !== "" ? (
+                  <Alert color="danger">{this.state.errorMessage}</Alert>
+                ) : (
+                  <div></div>
+                )}
+              </Col>
+              <Col className="mt-4" md={{ size: 9, offset: 3 }} >
                 <Link to="/login">Already have an account?</Link>
               </Col>
               <FormGroup className="mt-4" row>
-                <Col md={{ size: 9, offset: 3 }}>
+                <Col md={{ size: 9, offset: 3 }} xs={{ size: 8, offset: 4 }}>
                   <Button type="submit" color="primary">
                     Sign Up
                   </Button>
