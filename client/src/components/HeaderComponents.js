@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import { Navbar ,Nav ,NavbarToggler ,NavItem ,Collapse , NavbarBrand,} from 'reactstrap';
+import { Navbar ,Nav ,NavbarToggler ,NavItem ,Collapse , NavbarBrand} from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import LogoutBtn from './Auth/LogoutBtn';
-import {AccountCircle} from "@material-ui/icons"
+import {Divider} from "@material-ui/core"
 
 class Header extends Component {
 
@@ -78,6 +78,18 @@ class Header extends Component {
                           >
                             <h4>Register</h4>
                           </NavLink>
+                        </NavItem>                        
+                        <Divider orientation="vertical" flexItem  style={{height:"45px"}} className="d-none d-md-block"/>
+                        <NavItem>
+                          <NavLink
+                            className="nav-link"
+                            to="/login"
+                            activeStyle={{
+                              color: "black",
+                            }}
+                          >
+                            <h4>Login</h4>
+                          </NavLink>
                         </NavItem>
                       </>
                     )}
@@ -94,11 +106,6 @@ class Header extends Component {
                     </NavItem>
                     {loggedIn === true && (
                       <>
-                        <NavItem>
-                          <h4>
-                            <AccountCircle/>
-                          </h4>
-                        </NavItem>
                         <NavItem>
                           <LogoutBtn />
                         </NavItem>

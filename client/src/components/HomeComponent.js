@@ -22,6 +22,7 @@ export default function HomeComponent() {
       setClick(e);
     };
     return (
+      <>
       <div className="container">
         <Grid container spacing={2}>
           <Grid container sm={2}>
@@ -72,17 +73,17 @@ export default function HomeComponent() {
             </div>
           </Grid>
           <Grid style={{ maxWidth: "700px" }} xs={10}>
-            <div className="row mt-3 ml-1">
+            <div className="row mt-3 ml-1 mb-4">
               <Container>
                 {firstName === "" ? (
                   <div></div>
                 ) : (
                   <h4>
                     Welcome, {firstName} {lastName}!
-                  </h4>
+                  </h4> 
                 )}
 
-                <h5 className="m-2">Questions:</h5>
+                <h4 className="m-2">Questions</h4>
                 <div className="m-4">
                   <DisplayQuestions name={firstName} category={category} />
                 </div>
@@ -91,5 +92,6 @@ export default function HomeComponent() {
           </Grid>
         </Grid>
       </div>
+      </>
     );
 }

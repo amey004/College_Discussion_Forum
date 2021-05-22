@@ -61,7 +61,7 @@ export default class LoginComponent extends Component {
             <Form onSubmit={this.login}>
               <FormGroup row>
                 <Label htmlFor="email" md={3}>
-                  Email
+                  Email*
                 </Label>
                 <Col md={9}>
                   <Input
@@ -76,7 +76,7 @@ export default class LoginComponent extends Component {
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="password" md={3}>
-                  Password
+                  Password*
                 </Label>
                 <Col md={9}>
                   <Input

@@ -42,7 +42,7 @@ export default function AddQuestion(props) {
             <Form onSubmit={(e)=>addquestion(e)}>
               <FormGroup row>
                 <Label htmlFor="Question" md={3}>
-                  Question
+                  Question:
                 </Label>
                 <Col md={9}>
                   <Input
@@ -58,11 +58,11 @@ export default function AddQuestion(props) {
                     value={question}
                   />
                 </Col>
-                <Label htmlFor="type" md={3}>
-                  Type
+                <Label htmlFor="type" xs={3}>
+                  Category:
                 </Label>
-                <Col md={9}>
-                  <select onChange={(e)=> setType(e.target.value)}>
+                <Col xs={9} className="mt-2">
+                  <select required onChange={(e)=> setType(e.target.value)}>
                     <option value="campus">Campus</option>
                     <option value="campus">Academics</option>
                     <option value="placements">Placements</option>
@@ -70,8 +70,8 @@ export default function AddQuestion(props) {
                   </select>
                 </Col>
                 <FormGroup row>
-                  <Col md={{ size: 10, offset: 2 }} className="mt-3">
-                    <Button type="submit" color="primary">
+                  <Col md={{ size: 9, offset: 3 }} xs={{ size: 8, offset: 4 }} className="mt-4 text-center">
+                    <Button type="submit" color="primary" >
                       Add
                     </Button>
                   </Col>
