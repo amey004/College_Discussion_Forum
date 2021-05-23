@@ -16,11 +16,10 @@ class Footer extends Component{
           bottom: "0",
           width: "100%",
           height:"0px",
-          marginTop:"1000px"
         };
         const IconStyle={fontSize:"20px",marginRight:"0.7rem",marginTop:"1rem"}
         return (
-          <div style={mystyles} className="mt-4">
+          <div style={mystyles} className="">
             <div style={{ backgroundColor: "#c1a7ff",opacity:"0.8" }}>
               <Grid container style={{ marginTop: "50px" }}>
                 <Grid item xs={4} className="text-center mt-2 mb-4">

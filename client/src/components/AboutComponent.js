@@ -14,13 +14,13 @@ export default class About extends Component{
         return (
           <Slide direction="left" in>
             <div className="container">
-              <h2 className="text-center mt-2">About Us</h2>
+              <h2 className="text-center mt-2 aboutus">About Us</h2>
               <hr />
               <Grid container>
                 <Grid className="text-right m-2" item xs={3}>
                   <img src={logo} height="80px" alt="Logo" />
                 </Grid>
-                <Grid item className="mt-2" xs={8}>
+                <Grid item className="mt-2 aboutcontent" xs={8}>
                   <p style={{ fontSize: "18px", textAlign: "center" }}>
                     College Discussion Forum is a Q&A platform where students
                     can ask question and have their doubts cleared by

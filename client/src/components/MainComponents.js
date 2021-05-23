@@ -8,6 +8,7 @@ import LoginComponent from "./LoginComponent";
 import AddQuestion from "./Questions/AddQuestion";
 import register from "./RegisterComponent";
 import Footer from "./FooterComponent";
+const bg = require("../images/bg.jpg")
 class Main extends Component {
 
 

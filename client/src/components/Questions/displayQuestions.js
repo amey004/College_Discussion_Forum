@@ -58,11 +58,11 @@ class displayQuestions extends Component {
               className="w-100 mt-2 mr-2"
               key={i}
             >
-              <strong className="ml-2">{question.que}</strong>
+              <strong className="ml-2 question">{question.que}</strong>
 
               <CardBody>
                 {question.answer ? (
-                  <div>
+                  <div className="answer">
                     Answer : {question.answer}
                     <div className="mt-2">
                       <small>Answered by {question.ansBy}</small>
