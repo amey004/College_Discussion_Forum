@@ -35,10 +35,10 @@ class Footer extends Component{
                 </Grid>
                 <Grid item xs={4} className="text-center mt-2 mb-4">
                   <h5>Contact Us</h5>
-                  <Icon class="fa fa-twitter" style={IconStyle}></Icon>
-                  <Icon class="fa fa-facebook-square" style={IconStyle}></Icon>
-                  <Icon class="fa fa-instagram" style={IconStyle}></Icon>
-                  <Icon class="fa fa-envelope" style={IconStyle}></Icon>
+                  <Icon className="fa fa-twitter" style={IconStyle}></Icon>
+                  <Icon className="fa fa-facebook-square" style={IconStyle}></Icon>
+                  <Icon className="fa fa-instagram" style={IconStyle}></Icon>
+                  <Icon className="fa fa-envelope" style={IconStyle}></Icon>
                 </Grid>
                 <Grid item xs={4} className="text-center mt-2 mb-4">
                   <h5>Address</h5>

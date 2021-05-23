@@ -15,27 +15,30 @@ class Main extends Component {
     render(){
         const {loggedIn} = this.context;
         return (
-          <div className="app" style={{position:"relative",minHeight:"77vh"}}>
+          <div
+            className="app"
+            style={{ position: "relative", minHeight: "77vh"}}
+          >
             <Header />
-            <Switch>
-              <Route exact path="/" component={HomeComponent} />
-              <Route exact path="/aboutus" component={About} />
-              {loggedIn === true && (
-                <>
-                  <Route exact path="/addquestion">
-                    <AddQuestion />
-                  </Route>
-                </>
-              )}
-              {loggedIn === false && (
-                <>
-                  <Route exact path="/login" component={LoginComponent} />
-                  <Route exact path="/register" component={register} />
-                </>
-              )}
-              <Redirect to="/" />
-            </Switch>
-            <Footer/>
+              <Switch>
+                <Route exact path="/" component={HomeComponent} />
+                <Route exact path="/aboutus" component={About} />
+                {loggedIn === true && (
+                  <>
+                    <Route exact path="/addquestion">
+                      <AddQuestion />
+                    </Route>
+                  </>
+                )}
+                {loggedIn === false && (
+                  <>
+                    <Route exact path="/login" component={LoginComponent} />
+                    <Route exact path="/register" component={register} />
+                  </>
+                )}
+                <Redirect to="/" />
+              </Switch>
+            <Footer />
           </div>
         );
     }

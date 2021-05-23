@@ -3,6 +3,7 @@ import axios from"axios";
 import { Card, CardBody,Input,Button,Form } from "reactstrap";
 import AuthContext from "../../context/AuthContext";
 import "../../App.css"
+import {Grow} from "@material-ui/core"
 
 class displayQuestions extends Component {
   constructor(props) {
@@ -48,53 +49,55 @@ class displayQuestions extends Component {
         return <div key={i}></div>;
       } else {
         return (
-          <Card
-            style={{
-              backgroundImage:
-                "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)",
-            }}
-            className="w-100 mt-2 mr-2"
-            key={i}
-          >
-            <strong className="ml-2">{question.que}</strong>
+          <Grow key={i} in timeout={900}>
+            <Card
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)",
+              }}
+              className="w-100 mt-2 mr-2"
+              key={i}
+            >
+              <strong className="ml-2">{question.que}</strong>
 
-            <CardBody>
-              {question.answer ? (
-                <div>
-                  Answer : {question.answer}
-                  <div className="mt-2">
-                    <small>Answered by {question.ansBy}</small>
+              <CardBody>
+                {question.answer ? (
+                  <div>
+                    Answer : {question.answer}
+                    <div className="mt-2">
+                      <small>Answered by {question.ansBy}</small>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <Form
-                  onSubmit={(e) => {
-                    AddAnswer(e, { id: question._id });
-                  }}
-                >
-                  <Input
-                    type="textarea"
-                    placeholder="Enter your answer here"
-                    required="true"
-                    onChange={(e) => {
-                      this.setState({
-                        answer: e.target.value,
-                      });
+                ) : (
+                  <Form
+                    onSubmit={(e) => {
+                      AddAnswer(e, { id: question._id });
                     }}
-                  />
-                  <Button
-                    type="submit"
-                    disabled = {loggedIn ? "":"true"}
-                    title = {loggedIn ? null:"You need to be logged in!"}
-                    className="m-2"
-                    color="primary"
                   >
-                    Add
-                  </Button>
-                </Form>
-              )}
-            </CardBody>
-          </Card>
+                    <Input
+                      type="textarea"
+                      placeholder="Enter your answer here"
+                      required={true}
+                      onChange={(e) => {
+                        this.setState({
+                          answer: e.target.value,
+                        });
+                      }}
+                    />
+                    <Button
+                      type="submit"
+                      disabled={loggedIn ? false : true}
+                      title={loggedIn ? null : "You need to be logged in!"}
+                      className="m-2"
+                      color="primary"
+                    >
+                      Add
+                    </Button>
+                  </Form>
+                )}
+              </CardBody>
+            </Card>
+          </Grow>
         );
       }
     });
