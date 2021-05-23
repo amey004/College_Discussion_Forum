@@ -4,12 +4,13 @@ import loggedIn from "../context/AuthContext"
 import DisplayQuestions from './Questions/displayQuestions';
 import Container from "@material-ui/core/Container"
 import {Grid,Button} from "@material-ui/core"
-const bg = require("../images/bg.jpg")
 export default function HomeComponent() {
     const [firstName, setfirstName] = useState("");
     const [lastName, setlastName] = useState("");
     const [category, setcategory] = useState("");
     const [click,setClick]=useState("");
+    const [userId, setUserId] = useState("");
+    const [Id, setId] = useState("");
     const login = useContext(loggedIn);
     async function data(){
       if(login.loggedIn===true){
@@ -18,6 +19,7 @@ export default function HomeComponent() {
           );
           setfirstName(UserData.data.firstName);
           setlastName(UserData.data.lastName);
+          setUserId(UserData.data._id);
       }
     };
     useEffect(()=>{
@@ -26,16 +28,31 @@ export default function HomeComponent() {
     function buttonclick(e){
       setcategory(e);
       setClick(e);
+      
     };
- 
+    function myquestionclick (e){
+      setClick(e);
+      setId(userId);
+      setcategory("none")
+    }
     return (
       <>
-        <div className="container" style={{ backgroundImage: `url(${bg})` }}>
+        <div className="container">
           <Grid container spacing={2}>
             <Grid item container sm={2}>
               <div>
                 <h5 className="mt-4 ml-1">Categories</h5>
-                <div className="mt-3 ml-3">
+                <div className="mt-3 ml-1">
+                  {login.loggedIn === true ?
+                    <Button
+                      value="myquestions"
+                      className="ml-2"
+                      onClick={()=>{myquestionclick("myquestions")}}
+                      variant={click === "myquestions" ? "outlined" : "text"}
+                    >
+                      My Questions
+                    </Button> : <></>
+                  }
                   <Button
                     value=""
                     className="ml-2 d-md-block"
@@ -92,7 +109,7 @@ export default function HomeComponent() {
 
                   <h4 className="m-2">Questions</h4>
                   <div className="m-4">
-                    <DisplayQuestions name={firstName} category={category} />
+                    <DisplayQuestions name={firstName} category={category} userId={Id} />
                   </div>
                 </Container>
               </div>

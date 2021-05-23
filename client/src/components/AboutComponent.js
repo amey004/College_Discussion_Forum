@@ -14,7 +14,7 @@ export default class About extends Component{
         return (
           <Slide direction="left" in>
             <div className="container">
-              <h2 className="text-center mt-2 aboutus">About Us</h2>
+              <h3 className="text-center mt-2 aboutus">About Us</h3>
               <hr />
               <Grid container>
                 <Grid className="text-right m-2" item xs={3}>

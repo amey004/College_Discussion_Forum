@@ -17,10 +17,7 @@ class displayQuestions extends Component {
   }
   static contextType = AuthContext;
   async getQuestions() {
-    const category = this.props.category;
-    const questionsRes = await axios.get("http://localhost:5000/addquestion", {
-      category,
-    });
+    const questionsRes = await axios.get("http://localhost:5000/addquestion");
     this.setState({
       questions: questionsRes.data,
     });
@@ -41,13 +38,10 @@ class displayQuestions extends Component {
         Name,
       });
     }
+
     return questionsArr.map((question, i) => {
-      if (
-        (question.type !== this.props.category) &
-        (this.props.category !== "")
-      ) {
-        return <div key={i}></div>;
-      } else {
+
+      if(((question.userId === this.props.userId) && (this.props.category==="none"))){
         return (
           <Grow key={i} in timeout={900}>
             <Card
@@ -99,6 +93,62 @@ class displayQuestions extends Component {
             </Card>
           </Grow>
         );
+      }else if((question.type === this.props.category) || (this.props.category === "")){
+        return (
+          <Grow key={i} in timeout={900}>
+            <Card
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)",
+              }}
+              className="w-100 mt-2 mr-2"
+              key={i}
+            >
+              <strong className="ml-2 question">{question.que}</strong>
+
+              <CardBody>
+                {question.answer ? (
+                  <div className="answer">
+                    Answer : {question.answer}
+                    <div className="mt-2">
+                      <small>Answered by {question.ansBy}</small>
+                    </div>
+                  </div>
+                ) : (
+                  <Form
+                    onSubmit={(e) => {
+                      AddAnswer(e, { id: question._id });
+                    }}
+                  >
+                    <Input
+                      type="textarea"
+                      placeholder="Enter your answer here"
+                      required={true}
+                      onChange={(e) => {
+                        this.setState({
+                          answer: e.target.value,
+                        });
+                      }}
+                    />
+                    <Button
+                      type="submit"
+                      disabled={loggedIn ? false : true}
+                      title={loggedIn ? null : "You need to be logged in!"}
+                      className="m-2"
+                      color="primary"
+                    >
+                      Add
+                    </Button>
+                  </Form>
+                )}
+              </CardBody>
+            </Card>
+          </Grow>
+        );
+      }else{
+      return(
+        <div></div>
+      )
       }
     });
   }

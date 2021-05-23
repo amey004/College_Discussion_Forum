@@ -35,7 +35,7 @@ export default function AddQuestion(props) {
     return (
       <Slide direction="left" in>
         <div className="container">
-          <h2 className="text-center m-2 askquestion">Ask Question</h2>
+          <h3 className="text-center m-2 askquestion">Ask Question</h3>
           <hr/>
           <div className="row row-content">
             <div className="col-12 mt-4 mb-3">
