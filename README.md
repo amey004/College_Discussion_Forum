@@ -40,7 +40,7 @@ A platform specially designed for college students which mainly focuses on the s
 
 <h2>For Running the project locally follow these steps:</h2>
 <ul>
-  <li>Clone the repository using : </br><code>git clone https://github.com/your_username_/Project-Name.git</code></li>
+  <li>Clone the repository using : </br><code>git clone https://github.com/amey004/College_Discussion_Forum.git</code></li>
   <li>Run <code>npm install</code> command,</li>
   <li>Create a .env file and add the database link to it,</li>
   <li>Starting the server: Run <code> npm run</code> command,</li>
