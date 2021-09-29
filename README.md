@@ -45,4 +45,6 @@ A platform specially designed for college students which mainly focuses on the s
   <li>Starting the server: Run <code> npm run</code> command,</li>
   <li>Starting the client: Run <code> npm start</code> command,</li>
 </ul>
+![Screenshot (267)](https://user-images.githubusercontent.com/45684049/135215103-3807e9ae-8a34-48a2-b170-38c3f62173e1.png)
+
 <h2>Happy Coding!!</h2>
